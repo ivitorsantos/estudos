@@ -6,11 +6,11 @@ btn_add_task.addEventListener('click', addTask)
 
 
 function addTask(){   
-    const title_task = document.getElementById('title_task').value
-    const taskJason = {'titulo' : title_task, 'feito' : 0}
+    let title_task = document.getElementById('title_task').value
+    let taskJason = {'titulo' : title_task, 'feito' : 0}
    
     if (title_task.length > 0){
-        const chave = localStorage.length
+        let chave = localStorage.length
         console.log(chave)
 
         if (chave == 0){
@@ -19,7 +19,7 @@ function addTask(){
         }
         else {
             console.log('entrou else')
-            const id = chave+1
+            let id = chave+1
     
             localStorage.setItem(id, JSON.stringify(taskJason));
         }
@@ -36,14 +36,14 @@ function deleteTask(id) {
 
 function updateList() {
     
-    var chave = localStorage.length
+    let chave = localStorage.length
     
     let contentTask = document.getElementById('tbody')
     contentTask.innerText = ''
     let i = 0
     while( i < chave) {
-        const result = localStorage.getItem(i+1)
-        const resultObj = JSON.parse(result)
+        let result = localStorage.getItem(i+1)
+        let resultObj = JSON.parse(result)
         
         let tr = contentTask.insertRow()
 
@@ -73,7 +73,7 @@ function updateList() {
 
 
 function updateTask(){
-    
+
 }
 
 window.onload = updateList()
