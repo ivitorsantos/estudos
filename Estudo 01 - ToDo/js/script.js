@@ -26,7 +26,7 @@ function addTask(){
     }
 
     updateList()
-}
+}   
 
 function deleteTask(id) {
 
@@ -40,6 +40,7 @@ function updateList() {
     
     let contentTask = document.getElementById('tbody')
     contentTask.innerText = ''
+
     let i = 0
     while( i < chave) {
         let result = localStorage.getItem(i+1)
@@ -47,24 +48,34 @@ function updateList() {
         
         let tr = contentTask.insertRow()
 
-        let td_id = tr.insertCell()
-        let td_nome = tr.insertCell()
-        let td_acoes = tr.insertCell()
-        
-        td_id.innerText = i+1
-        td_nome.innerText = resultObj.titulo
-        td_acoes.innerHTML = '<input type="checkbox">'
+        if (resultObj.feito == 0){
+            let td_id = tr.insertCell()
+            let td_nome = tr.insertCell()
+            let td_acoes = tr.insertCell()
+            
+            td_id.innerText = i+1
+            td_nome.innerText = resultObj.titulo
+            td_acoes.innerHTML = '<input type="checkbox">'
+    
+            td_id.style.display = "none"
+            td_nome.classList.add('nome_task')
+            td_acoes.classList.add('checkBox')
+        } else{
 
-        td_id.style.display = "none"
-        td_nome.classList.add('nome_task')
-        td_acoes.classList.add('checkBox')
-        // td_nome.innerText = reusltObj.titulo 
-        
+            let td_id = tr.insertCell()
+            let td_nome = tr.insertCell()
+            let td_acoes = tr.insertCell()
+            
+            td_id.innerText = i+1
+            td_nome.innerText = resultObj.titulo
+            td_acoes.innerHTML = '<input type="checkbox" checked>'
+    
+            td_id.style.display = "none"
+            td_nome.style.textDecoration = "line-through"
+            td_nome.classList.add('nome_task')
+            td_acoes.classList.add('checkBox')
+        }
 
-        // document.write('<div class="task">' + '<span>'+ reusltObj.titulo + '</span>' + '<br>' + '<input type="checkbox">' + '</div>')
-        console.log(resultObj.titulo)
-
-        
         i++
      }
 
@@ -73,6 +84,7 @@ function updateList() {
 
 
 function updateTask(){
+    
 
 }
 
