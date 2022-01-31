@@ -34,18 +34,47 @@ function deleteTask(id) {
     updateList()
 }
 
-function updateTask(id) {
+function updateList() {
     
+    var chave = localStorage.length
+    
+    let contentTask = document.getElementById('tbody')
+    contentTask.innerText = ''
+    let i = 0
+    while( i < chave) {
+        const result = localStorage.getItem(i+1)
+        const resultObj = JSON.parse(result)
+        
+        let tr = contentTask.insertRow()
 
-    updateList()
+        let td_id = tr.insertCell()
+        let td_nome = tr.insertCell()
+        let td_acoes = tr.insertCell()
+        
+        td_id.innerText = i+1
+        td_nome.innerText = resultObj.titulo
+        td_acoes.innerHTML = '<input type="checkbox">'
+
+        td_id.style.display = "none"
+        td_nome.classList.add('nome_task')
+        td_acoes.classList.add('checkBox')
+        // td_nome.innerText = reusltObj.titulo 
+        
+
+        // document.write('<div class="task">' + '<span>'+ reusltObj.titulo + '</span>' + '<br>' + '<input type="checkbox">' + '</div>')
+        console.log(resultObj.titulo)
+
+        
+        i++
+     }
+
+
 }
 
 
-function updateList(){
-
-
+function updateTask(){
+    
+}
 
 window.onload = updateList()
-
-
 

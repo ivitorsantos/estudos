@@ -53,8 +53,12 @@
     padding: 15px 0;
 }
 
-.task input {
-    height: 18px;
-    width: 18px;
-    float: right;
+.checkBox input{
+    height: 18px !important;
+    width: 18px !important;
+    float: right !important;
+}
+
+.nome_task{
+    width: 100%;
 }
