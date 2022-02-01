@@ -4,7 +4,6 @@ const btn_check_task = document.getElementById('btn_check_task')
 
 btn_add_task.addEventListener('click', addTask)
 
-
 function addTask(){   
     let title_task = document.getElementById('title_task').value
     let taskJason = {'titulo' : title_task, 'feito' : 0}
@@ -49,28 +48,21 @@ function updateList() {
         let tr = contentTask.insertRow()
 
         if (resultObj.feito == 0){
-            let td_id = tr.insertCell()
             let td_nome = tr.insertCell()
             let td_acoes = tr.insertCell()
             
-            td_id.innerText = i+1
             td_nome.innerText = resultObj.titulo
-            td_acoes.innerHTML = '<input type="checkbox">'
-    
-            td_id.style.display = "none"
+            td_acoes.innerHTML = '<input type="checkbox" onclick="updateTaskCheck('+ (i+1) + ')">'    
             td_nome.classList.add('nome_task')
             td_acoes.classList.add('checkBox')
         } else{
 
-            let td_id = tr.insertCell()
             let td_nome = tr.insertCell()
             let td_acoes = tr.insertCell()
             
-            td_id.innerText = i+1
             td_nome.innerText = resultObj.titulo
-            td_acoes.innerHTML = '<input type="checkbox" checked>'
+            td_acoes.innerHTML = '<input type="checkbox" checked onclick="updateTaskCheck('+ (i+1) + ')">'
     
-            td_id.style.display = "none"
             td_nome.style.textDecoration = "line-through"
             td_nome.classList.add('nome_task')
             td_acoes.classList.add('checkBox')
@@ -83,9 +75,20 @@ function updateList() {
 }
 
 
-function updateTask(){
-    
+function updateTaskCheck(id){
+    let result = localStorage.getItem(id)
+    let resultObj = JSON.parse(result)
 
+    if(resultObj.feito == 0 ){
+        resultObj.feito = 1
+        console.log(resultObj.feito)
+    } else {
+        resultObj.feito = 0
+    }
+
+    localStorage.setItem(id, JSON.stringify(resultObj));
+
+    updateList()
 }
 
 window.onload = updateList()
