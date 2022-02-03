@@ -91,5 +91,12 @@ function updateTaskCheck(id){
     updateList()
 }
 
+
+function clearTasks() {
+    localStorage.clear()
+    
+    updateList()
+}
+
 window.onload = updateList()
 
